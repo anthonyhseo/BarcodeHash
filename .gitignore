@@ -1,0 +1,4 @@
+*.out
+upc_corpus.txt
+testHashMap.cpp
+test.cpp
