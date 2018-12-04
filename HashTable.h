@@ -45,12 +45,11 @@ class HashTable {
     void viewDistribution();
 
   private:
-    HashTable deepCopy(const HashTable &other);
     void initializeHashTable();
 };
 
 /*
- * DESCRIPTION: Constructor for the HashTable. Initializes private variables
+ * DESCRIPTION: Constructor for the HashTable. Initializes private variables for the HashTable class.
  * 
  * OUTPUT: none
  * INPUTS: none
@@ -64,7 +63,7 @@ HashTable<K, V>::HashTable() {
 }
 
 /*
- * DESCRIPTION: Copy constructor for the HashTable data structure. 
+ * DESCRIPTION: Copy constructor for the HashTable data structure. Implemented for part of the rule of Big Three. 
  * 
  * OUTPUTS: none
  * INPUTS: reference to HashTable to be copied
@@ -78,13 +77,22 @@ HashTable<K, V>::HashTable(const HashTable<K, V>& other) {
     *this = other;
 }
 
+/*
+ * DESCRIPTION: Destructor 
+ * 
+ * 
+ */
 template <class K, class V>
 HashTable<K, V>::~HashTable() {
     initializeHashTable();
     delete [] table;
 }
 
-
+/*
+ * DESCRIPTION: 
+ * 
+ * 
+ */
 template <class K, class V>
 void HashTable<K, V>::insert(K key, V value) {
     int index = hashFunction(key) % capacity;
@@ -127,6 +135,14 @@ void HashTable<K, V>::remove(K key) {
     }
 }
 
+/*
+ * DESCRIPTION: Assignment operator for the HashTable class. Implemented for
+ * part of the rule of big three.
+ *
+ * OUTPUT: reference to the hash copied hash table
+ * INPUTS
+ * 
+ */
 template <class K, class V>
 const HashTable<K, V>& HashTable<K, V>::operator=(const HashTable<K, V>& other) {
     if (this != &other) {
@@ -142,7 +158,7 @@ const HashTable<K, V>& HashTable<K, V>::operator=(const HashTable<K, V>& other) 
                 newNode->key = current->key;
                 newNode->value = current->value;
                 newNode->next = nullptr;
-                p->next =  newNode;
+                p->next = newNode;
                 p = p->next;
                 current = current->next;
             }
@@ -151,12 +167,6 @@ const HashTable<K, V>& HashTable<K, V>::operator=(const HashTable<K, V>& other) 
             copiedLL = copiedLL->next;
             table[i] = copiedLL;
             delete temp;
-
-            HashNode<K, V>* thisCurrent = table[i];
-            while (thisCurrent != nullptr) {
-                cout << "this current: " << thisCurrent->key << " " << thisCurrent->value << endl;
-                thisCurrent = thisCurrent->next;
-            }
         }
     }
     
@@ -164,9 +174,13 @@ const HashTable<K, V>& HashTable<K, V>::operator=(const HashTable<K, V>& other) 
 }
 
 /*
- * DESCRIPTION: 
+ * DESCRIPTION: Private method to empty the HashTable to the initial state.
+ * This is essentially a helper for the destructor, copy constructor and 
+ * assignment operator.
  * 
- * 
+ * OUTPUT: none
+ * INPUTS: none
+ * AUTHOR: Anthony Seo
  */
 template <class K, class V>
 void HashTable<K, V>::initializeHashTable() {
@@ -181,21 +195,5 @@ void HashTable<K, V>::initializeHashTable() {
         table[i] = nullptr;
     }
 }
-
-template <class K, class V>
-void HashTable<K, V>::viewDistribution() {
-    HashNode<K, V> *current;
-    for (int i = 0; i < capacity; i++) {
-        current = table[i];
-        int count = 0;
-        while (current != nullptr) {
-            current = current->next;
-            count++;
-        }
-        cout << "table[" << i << "]: " << count << endl;
-    }
-}
-
-
 
 #endif // HASHTABLE_H_

@@ -13,13 +13,11 @@ void init(HashTable<string, string> &hash);
 int main() {
     HashTable<string, string> products;
 
-    clock_t t = clock();
     init(products);
-    t = clock() - t;
-    cout << t * 1.0 / CLOCKS_PER_SEC << endl;
 
+    clock_t t;
     string upc;
-    while (upc != "quit") {
+    while (true) {
         cout << "Enter the UPC of the product you want to retrieve: ";
         getline(cin, upc);
         if (upc == "quit") {
@@ -33,15 +31,20 @@ int main() {
             cout << "could not find product with UPC: " << upc << endl;
         }
         
-        // cout << productsSTL[upc] << endl;
         t = clock() - t;
         cout << t * 1.0 / CLOCKS_PER_SEC * 1000 << endl;
     }
 
-
     return 0;
 }
 
+/*
+ * DESCRIPTION: This function will initialize the HashTable with the UPC and description of each product.
+ * 
+ * OUTPUT: none
+ * INPUTS: reference to the hash function
+ * AUTHOR: Anthony Seo
+ */
 void init(HashTable<string, string> &hash) {
     string output;
     ifstream file;
