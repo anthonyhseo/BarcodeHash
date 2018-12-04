@@ -10,8 +10,9 @@ using namespace std;
 void init(HashTable<string, string> &hash);
 
 /*
- * DESCRIPTION: Automated testing for HashTable. It will output a csv file to graph the data.
- * 
+ * DESCRIPTION: Automated testing for HashTable. It will output a csv file to
+ * graph the data.
+ *
  * to compile: g++ BarcodeHashPerformance.cpp -o BarcodeHashPerformance.out
  * to run: ./BarcodeHashPerformance.out
  *
