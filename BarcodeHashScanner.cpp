@@ -9,7 +9,15 @@ using namespace std;
 
 void init(HashTable<string, string> &hash);
 
-
+/*
+ * DESCRIPTION: Main method for BarcodeHashScanner.
+ * to compile: g++ BarcodeHashScanner.cpp -o BarcodeHashScanner.out
+ * to run: ./BarcodeHashScanner.out
+ * Just a note, it took a long time to insert all products into the 
+ * Hash Table (approximately 4-5min).
+ * 
+ * AUTHOR: Anthony Seo
+ */
 int main() {
     HashTable<string, string> products;
 
@@ -39,8 +47,9 @@ int main() {
 }
 
 /*
- * DESCRIPTION: This function will initialize the HashTable with the UPC and description of each product.
- * 
+ * DESCRIPTION: This function will initialize the HashTable with the UPC and
+ * description of each product.
+ *
  * OUTPUT: none
  * INPUTS: reference to the hash function
  * AUTHOR: Anthony Seo
