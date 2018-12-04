@@ -146,7 +146,7 @@ V HashTable<K, V>::get(K key) {
         current = current->next;
     }
     if (current == nullptr) {
-        throw "There are no items with key: " + key;
+        throw "There are no items with that key";
     }
     return current->value;
 }
